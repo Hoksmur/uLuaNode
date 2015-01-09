@@ -37,7 +37,6 @@ M.srv:listen(80,function(conn)
     if type( M.apifunc )=="function" then
 	  collectgarbage("collect")
       M.apimsg=M.apifunc()
-	  print("API func from http:", M.apimsg)
     else
       M.apimsg="MsgAPI" 
     end
@@ -49,11 +48,13 @@ M.srv:listen(80,function(conn)
 	  elseif  lfile["index.pht"] then M.file="/index.pht" end
 	end
 	if lfile[tostring(string.match(M.file, "/(.*)")) ] then --file esist
-	  if string.match(M.file, "%.([%w]+)$" )=="lua" then
+	  local ftype; ftype=string.match(M.file, "%.([%w]+)$")
+	  if ftype=="lua" then
 	    M.answer=loadfile(string.match(M.file, "/(.*)"))()
 	  else
-	    M.answer=loadfile("htmlcode.lua")(M.file)
+	    M.answer=loadfile("type"..tostring(ftype)..".lua")(M.file,M.params,M.apimsg)
 	  end
+	  ftype=nil
 	else -- file not found!
 	  M.answer=loadfile("html404.lua")()
 	end

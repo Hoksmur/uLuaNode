@@ -1,4 +1,3 @@
-print("_parse_ node.heap() : ", node.heap() )
 --[==[ parse header
 set M.type to GET or POST or [....]
 set M.file : replace / to index.html or real requested
@@ -43,4 +42,3 @@ if M.type=="POST" then
 end
 
 M.req=nil
-collectgarbage("collect")

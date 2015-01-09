@@ -1,0 +1,10 @@
+<html><head><title>esp8266</title></head>
+<body><h1>uLuaNode sample page</h1><hr>
+Free mem: <b><?lua return tostring(node.heap()) ?></b><br>
+<b>Called as </b><?lua local s1,s2,s3; s1,s2,s3=... return tostring(s1) ?><br>
+<b>Parameters: </b><?lua local s1,s2,s3; s1,s2,s3=... return tostring(s2) ?><br>
+<b>API message: </b><?lua local s1,s2,s3; s1,s2,s3=... return tostring(s3) ?><br>
+<a href="/?param1=test"> Link for test paremeters</a><br>
+GPIO0(lua #3): <?lua return gpio.read(3)?><br>
+GPIO2(lua #4): <?lua return gpio.read(4)?><br>
+</body></html>
