@@ -12,6 +12,8 @@ local moduleName = ...
 local M = {}
 _G[moduleName] = M
 
+M.interpret=loadfile("interpret.lua")
+
 if not M.answer then
   M.req=""
   M.boundary=""
