@@ -1,0 +1,4 @@
+return { ["wm"]="3",
+ ["staid"]="HOME", ["stapwd"]="mypassword",
+ ["appwd"]="12345678", ["apid"]="ESP_8266",
+}

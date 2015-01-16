@@ -1,0 +1,13 @@
+<html><head><title>esp_8266</title></head>
+<body>
+<h3>uLuaNode parameters</h3><hr>
+Free memory from pht-file: <b><?lua return node.heap() ?></b><br>
+<!-- No html, define userapi callback if not defined
+<?lua if type(http.apifunc)~="function" then  http:setapi( function() return "Free user mem: "..tostring(node.heap()) end ) end  return "API test" ?> -->
+API message from user function: <b><?lua return http.apimsg?></b><br>
+<u>Refresh page if you see upper </u> <i><b>MsgAPI</b></i><br><br>
+<font color="green">Station MAC: <b><?lua return wifi.sta.getmac() ?></b><br>
+Station IP: <b><?lua return wifi.sta.getip() ?></b><br><br></font>
+<font color="olive">Access point MAC: <b><?lua return wifi.ap.getmac() ?></b><br>
+Access point IP: <b><?lua return wifi.ap.getip() ?></b><br></font>
+</body></html>

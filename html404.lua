@@ -1,5 +1,4 @@
-﻿-- not exist [404]
-print("! ...", ... )
+-- not exist [404]
 local M; M=http
 local bufstr; local outstr 
   outstr="HTTP/1.1 404 Not Found\
@@ -17,6 +16,5 @@ go to <a href="/"><b>start page</b></a>
 </body></html> ]==] 
   bufstr=tostring(#bufstr).."\r\n\r\n"..bufstr
   outstr=outstr..bufstr; bufstr=nil
-  print("_404_ node.heap():", node.heap(), "lenght: ", #outstr )
-
+  print("_404_ node.heap():", node.heap(), ", lenght: ", #outstr )
   return outstr

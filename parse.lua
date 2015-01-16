@@ -6,7 +6,9 @@ set M.params to request string or ""
 ]==] 
 local M;M=http
 
-local i; local j
+local i,j
+local name,val,tab
+
 i,j=string.find(M.req, "\r\n")
 if string.find(M.req, "([%u]+) /") < i then
   M.type=string.match(M.req, "([%u]+) /")
@@ -21,24 +23,17 @@ end
 
 local stmp
 M.file=string.match(M.req, "[%u]+ (/[%d%a]*%.?[%d%a]*)")
-
 stmp=string.match(M.req, "%?([%a%d%p]+)" )
 if stmp then -- parameters exist
-  M.params=stmp
+  j=1; tab={} 
+  repeat
+   i,j,name,val=string.find(stmp,"([%w_%-%(%)]+)=([%w_%-%(%)]*)",j) 
+   if i then tab[name]=val end
+  until not i
+  M.params=tab
   stmp=nil
 else -- no parameters
-  M.params=""
-end
-
-if M.type=="POST" then
-  if string.match(M.req, "boundary(.)") then 
-    --boundary part found
-    M.boundary=string.match(M.req, "boundary=([%a%d%p]*)" ) 
-    M.boundlen=tonumber(string.match(M.req, "Content%-Length: (%d*)") )
-  else
-    M.boundary=""
-    M.boundlen=0
-  end
+  M.params=nil
 end
 
 M.req=nil
